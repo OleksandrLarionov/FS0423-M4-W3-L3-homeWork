@@ -27,7 +27,7 @@ public class Application {
         Faker faker = new Faker();
 
 //        ********************CREAZIONE LOCATION****************
-        Location tokyo = new Location("Jiappone","Tokyo");
+        Location tokyo = new Location("Giappone","Tokyo");
 //        ld.save(tokyo);
 
 //        ********************CREAZIONE EVENTI****************
@@ -40,6 +40,7 @@ public class Application {
 
 //        pd.save(paolo);
 //        pd.save(marco);
+
         System.out.println("******************************CONFERMO LA PARTECIPAZIONE*******************");
         Partecipazione partUno = new Partecipazione(paolo, olimpiadi, Stato.CONFERMATA);
         Partecipazione partDue = new Partecipazione(marco, olimpiadi, Stato.CONFERMATA);
@@ -47,18 +48,18 @@ public class Application {
 //        partd.save(partUno);
 //        partd.save(partDue);
 
-        //        ********************PARTECIPAZIONE AL EVENTO****************
-
         System.out.println("********************LISTA EVENTI********************");
 
         List<Evento> listaEventi = ed.getAllEvents();
         listaEventi.forEach(System.out::println);
 
+        System.out.println("********************NOME EVENTO CON ID********************");
+        ed.getEventoNameById(33);
+
 //        ********************DELETE EVENT****************
         System.out.println("********************EVENTI CANCELLATI********************");
 
-        ed.findByIdAndDelete(3);
-
+//        ed.findByIdAndDelete(33);
 
         em.close();
         emf.close();

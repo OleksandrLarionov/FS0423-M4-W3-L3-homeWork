@@ -28,6 +28,15 @@ public class EventoDAO {
         Evento found = em.find(Evento.class, id);
         return found;
     };
+
+    public void getEventoNameById(long id) {
+        Evento evento = em.find(Evento.class, id);
+        if (evento != null){
+            System.out.printf(evento.getTitolo());
+        } else {
+            System.out.printf("Non è Stato trovato nessun evento");
+        }
+    }
     public void findByIdAndDelete(long id){
         Evento found = this.getById(id);
 
@@ -40,7 +49,7 @@ public class EventoDAO {
 
             transaction.commit();
 
-            System.out.println("Evento cancellato");
+            System.out.println("Evento " + found.getTitolo() + " cancellato");
 
         } else {
             System.out.println("Evento non trovato");

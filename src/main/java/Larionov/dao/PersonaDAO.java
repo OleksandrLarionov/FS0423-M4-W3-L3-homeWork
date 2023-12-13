@@ -22,7 +22,7 @@ public class PersonaDAO {
 
         transazione.commit();
 
-        System.out.println("Evento" + persona.getNome() + "è stato salvato con successo");
+        System.out.println("Evento" + persona.getNome() + " è stato salvato con successo");
     };
     public Persona getById(long id){
         Persona found = em.find(Persona.class, id);
@@ -40,10 +40,10 @@ public class PersonaDAO {
 
             transaction.commit();
 
-            System.out.println("La persona selezionata è stata cancellato");
+            System.out.println("La persona selezionata è stata cancellata");
 
         } else {
-            System.out.println("Persona non trovato");
+            System.out.println("Persona non è presente nel database");
         }
 
     };

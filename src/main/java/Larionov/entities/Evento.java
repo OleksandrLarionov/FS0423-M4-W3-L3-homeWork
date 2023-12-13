@@ -91,24 +91,20 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
-
     public void setLocation(Location location) {
         this.location = location;
     }
-
 
     @Override
     public String toString() {
         return "Evento{" +
                 "Id=" + Id +
-                ", titolo='" + titolo + '\'' +
-                ", dataEvento=" + dataEvento +
-                ", descrizione='" + descrizione + '\'' +
-                ", tipoEvento=" + tipoEvento +
-                ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
-                ", persone=" +
-                ", location=" + location +
-                ", locationList=" +
+                ", titolo= '" + titolo + '\'' +
+                ", dataEvento= " + dataEvento +
+                ", descrizione= '" + descrizione + '\'' +
+                ", tipoEvento= " + tipoEvento +
+                ", numeroMassimoPartecipanti= " + numeroMassimoPartecipanti +
+                ", location= " + location +
                 '}';
     }
 }

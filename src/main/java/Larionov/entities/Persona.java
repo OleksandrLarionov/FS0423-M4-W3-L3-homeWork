@@ -24,7 +24,6 @@ public class Persona {
     @OneToMany(mappedBy = "partecipante")
     private List<Partecipazione> listaPartecipazioni;
 
-
     public Persona() {
     }
     public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, Gender sesso) {
@@ -82,13 +81,13 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", email='" + email + '\'' +
-                ", dataDiNascita=" + dataDiNascita +
-                ", sesso=" + sesso +
-                ", listaPartecipazioni=" +
+                "id= " + id +
+                ", nome= '" + nome + '\'' +
+                ", cognome= '" + cognome + '\'' +
+                ", email= '" + email + '\'' +
+                ", dataDiNascita= " + dataDiNascita +
+                ", sesso= " + sesso +
+                ", listaPartecipazioni= " +
                 '}';
     }
 }

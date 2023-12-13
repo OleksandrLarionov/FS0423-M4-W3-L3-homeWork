@@ -58,12 +58,12 @@ public class Partecipazione {
 
     @Override
     public String toString() {
-        return "Partecipazione{" +
-                "id=" + id +
-                ", partecipante=" + partecipante +
-                ", evento=" + evento +
-                ", stato=" + stato +
-                ", persona=" + partecipante +
+        return "Partecipazione {" +
+                "id= " + id +
+                ", partecipante= " + partecipante +
+                ", evento= " + evento +
+                ", stato= " + stato +
+                ", persona= " + partecipante +
                 '}';
     }
 }
