@@ -8,24 +8,59 @@ public class Partecipazione {
     @GeneratedValue
     @Id
     private long id;
-//    private List<Persona> persona;
-//    private List<GestioneEventi> evento;
+    private Persona personaPartecipante;
+    private List<GestioneEventi> eventoP;
     @Enumerated(EnumType.STRING)
     private Stato stato;
 
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
+
+
     public Partecipazione() {
     }
-    public Partecipazione(List<Persona> persona, Stato stato) {
+
+    public Partecipazione(Persona personaPartecipante, List<GestioneEventi> eventoP, Stato stato, Persona persona) {
+        this.personaPartecipante = personaPartecipante;
+        this.eventoP = eventoP;
         this.stato = stato;
+        this.persona = persona;
     }
 
     public long getId() {
         return id;
     }
 
+    public Persona getPersona() {
+        return personaPartecipante;
+    }
+
+    public Persona getPersonaPartecipante() {
+        return personaPartecipante;
+    }
+
+    public List<GestioneEventi> getEventoP() {
+        return eventoP;
+    }
+
+    public void setPersonaPartecipante(Persona personaPartecipante) {
+        this.personaPartecipante = personaPartecipante;
+    }
+
+    public void setEventoP(List<GestioneEventi> eventoP) {
+        this.eventoP = eventoP;
+    }
+
     public Stato getStato() {
         return stato;
     }
+
+    public void setPersona(Persona persona) {
+        this.personaPartecipante = persona;
+    }
+
+
 
     public void setStato(Stato stato) {
         this.stato = stato;
@@ -35,8 +70,8 @@ public class Partecipazione {
     public String toString() {
         return "Partecipazione{" +
                 "id=" + id +
-                ", persona=" +
-                ", evento=" +
+                ", persona=" + personaPartecipante +
+                ", evento=" + eventoP +
                 ", stato=" + stato +
                 '}';
     }

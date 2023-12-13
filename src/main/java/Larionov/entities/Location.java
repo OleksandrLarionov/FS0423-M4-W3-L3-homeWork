@@ -1,8 +1,7 @@
 package Larionov.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Location {
@@ -11,6 +10,14 @@ public class Location {
     private long id;
     private String nome;
     private String citta;
+
+    @ManyToMany
+    @JoinTable(name = "gestioneeventi_location",
+            joinColumns = @JoinColumn(name = "location"),
+            inverseJoinColumns = @JoinColumn(name = "gestioneeventi_id")
+    )
+
+    private List<GestioneEventi> gestioneEventiList;
 
     public Location() {
     }

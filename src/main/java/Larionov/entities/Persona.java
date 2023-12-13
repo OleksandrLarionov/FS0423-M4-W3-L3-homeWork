@@ -2,6 +2,7 @@ package Larionov.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,9 @@ public class Persona {
     @ManyToOne
     @JoinColumn(name = "gestioneeventi_id")
     private GestioneEventi gestioneeventi;
+
+    @OneToMany(mappedBy = "persona")
+    private List<Partecipazione> partecipazione = new ArrayList<>();
 
 
     public Persona() {

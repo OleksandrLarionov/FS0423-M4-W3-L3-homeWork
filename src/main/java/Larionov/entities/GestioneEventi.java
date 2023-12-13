@@ -26,6 +26,15 @@ public class GestioneEventi {
     @OneToMany(mappedBy = "gestioneeventi")
     private List<Persona> persone = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "gestioneeventi_location",
+            joinColumns = @JoinColumn(name = "gestioneeventi_id"),
+            inverseJoinColumns = @JoinColumn(name = "location")
+    )
+    private List<Location> locationList;
+
+
+
     public GestioneEventi () {};
     public GestioneEventi(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
