@@ -17,7 +17,7 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private Gender sesso;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "evento_id")
     private Evento evento;
 

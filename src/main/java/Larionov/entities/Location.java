@@ -13,9 +13,9 @@ public class Location {
 
     @OneToMany(mappedBy = "location")
     private List<Evento> eventi;
-//    @OneToMany
-//    @JoinColumn(name = "evento_id")
-//    private List<Evento> eventiList;
+    @OneToMany
+    @JoinColumn(name = "evento_id")
+    private List<Evento> eventiList;
 
     public Location() {
     }

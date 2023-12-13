@@ -54,7 +54,7 @@ public class Application {
         listaEventi.forEach(System.out::println);
 
         System.out.println("********************NOME EVENTO CON ID********************");
-        ed.getEventoNameById(33);
+//        ed.getEventoNameById(33);
 
 //        ********************DELETE EVENT****************
         System.out.println("********************EVENTI CANCELLATI********************");

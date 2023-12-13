@@ -30,7 +30,7 @@ public class EventoDAO {
     };
 
     public void getEventoNameById(long id) {
-        Evento evento = em.find(Evento.class, id);
+        Evento evento = getById(id);
         if (evento != null){
             System.out.printf(evento.getTitolo());
         } else {
@@ -49,7 +49,7 @@ public class EventoDAO {
 
             transaction.commit();
 
-            System.out.println("Evento " + found.getTitolo() + " cancellato");
+            System.out.println("Evento " + " cancellato");
 
         } else {
             System.out.println("Evento non trovato");

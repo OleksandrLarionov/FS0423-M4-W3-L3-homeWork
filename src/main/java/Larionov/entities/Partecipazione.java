@@ -7,14 +7,14 @@ public class Partecipazione {
     @GeneratedValue
     @Id
     private long id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "partecipante_id")
     private Persona partecipante;
 
     @Enumerated(EnumType.STRING)
     private Stato stato;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "evento_id")
     private Evento evento;
 

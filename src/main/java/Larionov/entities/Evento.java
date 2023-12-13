@@ -22,9 +22,9 @@ public class Evento {
     private TipoEvento tipoEvento;
     @Column(name = "numeromassimopartecipanti")
     private int numeroMassimoPartecipanti;
-    @OneToMany(mappedBy = "evento")
+    @OneToMany(mappedBy = "evento",cascade = CascadeType.REMOVE)
     private List<Partecipazione> partecipazioneList;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "location_id")
     private Location location;
     public Evento() {
