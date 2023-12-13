@@ -1,13 +1,10 @@
 package Larionov;
 
-import Larionov.dao.GestioneEventiDAO;
+import Larionov.dao.EventoDAO;
 import Larionov.dao.LocationDAO;
 import Larionov.dao.PartecipazioneDAO;
 import Larionov.dao.PersonaDAO;
-import Larionov.entities.Gender;
-import Larionov.entities.GestioneEventi;
-import Larionov.entities.Persona;
-import Larionov.entities.TipoEvento;
+import Larionov.entities.*;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
@@ -22,56 +19,20 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("FS0423-M4-W3-L3-homeWork");
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
-        GestioneEventiDAO ged = new GestioneEventiDAO(em);
+        EventoDAO ed = new EventoDAO(em);
         PersonaDAO pd = new PersonaDAO(em);
         LocationDAO ld = new LocationDAO(em);
         PartecipazioneDAO partd = new PartecipazioneDAO(em);
+
         Faker faker = new Faker();
 
-//        *****************************SUPPLIERS******************************
-        Supplier<LocalDate> dateSupplier = () -> {
-            Random rdm = new Random();
-            int randomYear = rdm.nextInt(2000,2024);
-            int randomDay = rdm.nextInt(1,30);
-            int randomMonth = rdm.nextInt(1,12);
-            return LocalDate.of(randomYear, randomMonth,randomDay);
-        };
-
-        Supplier<Integer> pplInvitationSupplier = () -> {
-            Random rndm = new Random();
-            int ppl = rndm.nextInt(1, 150);
-            return  ppl;
-        };
-
-        Supplier<TipoEvento> supplierEventoRndm = () -> {
-            Random rndm = new Random();
-            int numRandom = rndm.nextInt(1,3);
-            if (numRandom == 1) {
-                return TipoEvento.PRIVATO;
-            } else {
-                return TipoEvento.PUBBLICO;
-            }
-        };
-
-        Supplier<GestioneEventi> nuovoEventoSupplier = () -> new GestioneEventi(faker.name().title(), dateSupplier.get(), faker.gameOfThrones().city(), supplierEventoRndm.get(), pplInvitationSupplier.get());
+//        ********************CREAZIONE LOCATION****************
+        Location tokyo = new Location("Jiappone","Tokyo");
+//        ld.save(tokyo);
 
 //        ********************CREAZIONE EVENTI****************
-
-//        for (int i = 0; i < 5; i++){
-//            ged.save(nuovoEventoSupplier.get());
-//        }
-
-        System.out.println("********************LISTA EVENTI********************");
-
-        List<GestioneEventi> listaEventi = ged.getAllEvents();
-        listaEventi.forEach(System.out::println);
-
-
-//        ********************DELETE EVENT****************
-        System.out.println("********************EVENTI CANCELLATI********************");
-
-        ged.findByIdAndDelete(3);
-
+        Evento olimpiadi = new Evento("Nuoto", LocalDate.of(2024,2,25), "Olimpiadi di nuoto libero con lo skate",TipoEvento.PUBBLICO, 20000, tokyo);
+//        ed.save(olimpiadi);
 
         System.out.println("********************CREAZIONE DEL PARTECIPANTE********************");
         Persona paolo = new Persona("Paolo","Marchetti","paolo@mail.com", LocalDate.of(1991,4,25), Gender.MALE);
@@ -79,12 +40,27 @@ public class Application {
 
 //        pd.save(paolo);
 //        pd.save(marco);
+        System.out.println("******************************CONFERMO LA PARTECIPAZIONE*******************");
+        Partecipazione partUno = new Partecipazione(paolo, olimpiadi, Stato.CONFERMATA);
+        Partecipazione partDue = new Partecipazione(marco, olimpiadi, Stato.CONFERMATA);
 
+//        partd.save(partUno);
+//        partd.save(partDue);
 
+        //        ********************PARTECIPAZIONE AL EVENTO****************
+
+        System.out.println("********************LISTA EVENTI********************");
+
+        List<Evento> listaEventi = ed.getAllEvents();
+        listaEventi.forEach(System.out::println);
+
+//        ********************DELETE EVENT****************
+        System.out.println("********************EVENTI CANCELLATI********************");
+
+        ed.findByIdAndDelete(3);
 
 
         em.close();
         emf.close();
-
     }
 }

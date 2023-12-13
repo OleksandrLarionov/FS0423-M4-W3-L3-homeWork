@@ -11,13 +11,11 @@ public class Location {
     private String nome;
     private String citta;
 
-    @ManyToMany
-    @JoinTable(name = "gestioneeventi_location",
-            joinColumns = @JoinColumn(name = "location"),
-            inverseJoinColumns = @JoinColumn(name = "gestioneeventi_id")
-    )
-
-    private List<GestioneEventi> gestioneEventiList;
+    @OneToMany(mappedBy = "location")
+    private List<Evento> eventi;
+//    @OneToMany
+//    @JoinColumn(name = "evento_id")
+//    private List<Evento> eventiList;
 
     public Location() {
     }
@@ -25,6 +23,10 @@ public class Location {
     public Location(String nome, String citta) {
         this.nome = nome;
         this.citta = citta;
+    }
+
+    public List<Evento> getEventi() {
+        return eventi;
     }
 
     public void setNome(String nome) {

@@ -3,12 +3,11 @@ package Larionov.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "gestioneeventi")
-public class GestioneEventi {
+@Table(name = "evento")
+public class Evento {
     @Id
     @GeneratedValue
     private long Id;
@@ -23,29 +22,21 @@ public class GestioneEventi {
     private TipoEvento tipoEvento;
     @Column(name = "numeromassimopartecipanti")
     private int numeroMassimoPartecipanti;
-    @OneToMany(mappedBy = "gestioneeventi")
-    private List<Persona> persone = new ArrayList<>();
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> partecipazioneList;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "location_id")
+    private Location location;
+    public Evento() {
+    }
 
-    @ManyToMany
-    @JoinTable(name = "gestioneeventi_location",
-            joinColumns = @JoinColumn(name = "gestioneeventi_id"),
-            inverseJoinColumns = @JoinColumn(name = "location")
-    )
-    private List<Location> locationList;
-
-
-
-    public GestioneEventi () {};
-    public GestioneEventi(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-    }
-
-    public long getId() {
-        return Id;
+        this.location = location;
     }
 
     public String getTitolo() {
@@ -68,6 +59,18 @@ public class GestioneEventi {
         return numeroMassimoPartecipanti;
     }
 
+    public List<Partecipazione> getPartecipazioneList() {
+        return partecipazioneList;
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
@@ -88,15 +91,24 @@ public class GestioneEventi {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+
     @Override
     public String toString() {
-        return "GestioneEventi{" +
+        return "Evento{" +
                 "Id=" + Id +
                 ", titolo='" + titolo + '\'' +
                 ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
                 ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
+                ", persone=" +
+                ", location=" + location +
+                ", locationList=" +
                 '}';
     }
 }

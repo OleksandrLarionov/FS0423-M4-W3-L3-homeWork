@@ -1,6 +1,5 @@
 package Larionov.dao;
 
-import Larionov.entities.GestioneEventi;
 import Larionov.entities.Location;
 
 import javax.persistence.EntityManager;

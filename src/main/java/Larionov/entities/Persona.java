@@ -2,7 +2,6 @@ package Larionov.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,12 +17,12 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private Gender sesso;
 
-    @ManyToOne
-    @JoinColumn(name = "gestioneeventi_id")
-    private GestioneEventi gestioneeventi;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "evento_id")
+    private Evento evento;
 
-    @OneToMany(mappedBy = "persona")
-    private List<Partecipazione> partecipazione = new ArrayList<>();
+    @OneToMany(mappedBy = "partecipante")
+    private List<Partecipazione> listaPartecipazioni;
 
 
     public Persona() {
