@@ -8,16 +8,14 @@ public class Partecipazione {
     @GeneratedValue
     @Id
     private long id;
-    private List<Persona> persona;
-    private List<GestioneEventi> evento;
+//    private List<Persona> persona;
+//    private List<GestioneEventi> evento;
     @Enumerated(EnumType.STRING)
     private Stato stato;
 
     public Partecipazione() {
     }
-    public Partecipazione(List<Persona> persona, List<GestioneEventi> evento, Stato stato) {
-        this.persona = persona;
-        this.evento = evento;
+    public Partecipazione(List<Persona> persona, Stato stato) {
         this.stato = stato;
     }
 
@@ -25,24 +23,8 @@ public class Partecipazione {
         return id;
     }
 
-    public List<Persona> getPersona() {
-        return persona;
-    }
-
-    public List<GestioneEventi> getEvento() {
-        return evento;
-    }
-
     public Stato getStato() {
         return stato;
-    }
-
-    public void setPersona(List<Persona> persona) {
-        this.persona = persona;
-    }
-
-    public void setEvento(List<GestioneEventi> evento) {
-        this.evento = evento;
     }
 
     public void setStato(Stato stato) {
@@ -53,8 +35,8 @@ public class Partecipazione {
     public String toString() {
         return "Partecipazione{" +
                 "id=" + id +
-                ", persona=" + persona +
-                ", evento=" + evento +
+                ", persona=" +
+                ", evento=" +
                 ", stato=" + stato +
                 '}';
     }

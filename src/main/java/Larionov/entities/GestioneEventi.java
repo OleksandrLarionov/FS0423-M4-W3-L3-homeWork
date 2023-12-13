@@ -2,7 +2,10 @@ package Larionov.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "gestioneeventi")
 public class GestioneEventi {
@@ -20,6 +23,8 @@ public class GestioneEventi {
     private TipoEvento tipoEvento;
     @Column(name = "numeromassimopartecipanti")
     private int numeroMassimoPartecipanti;
+    @OneToMany(mappedBy = "gestioneeventi")
+    private List<Persona> persone = new ArrayList<>();
 
     public GestioneEventi () {};
     public GestioneEventi(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {

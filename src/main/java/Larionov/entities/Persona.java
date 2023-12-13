@@ -17,7 +17,10 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private Gender sesso;
 
-    private List<Partecipazione> listaPartecipazioni;
+    @ManyToOne
+    @JoinColumn(name = "gestioneeventi_id")
+    private GestioneEventi gestioneeventi;
+
 
     public Persona() {
     }
@@ -53,10 +56,6 @@ public class Persona {
         return sesso;
     }
 
-    public List<Partecipazione> getListaPartecipazioni() {
-        return listaPartecipazioni;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -77,10 +76,6 @@ public class Persona {
         this.sesso = sesso;
     }
 
-    public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
-        this.listaPartecipazioni = listaPartecipazioni;
-    }
-
     @Override
     public String toString() {
         return "Persona{" +
@@ -90,7 +85,7 @@ public class Persona {
                 ", email='" + email + '\'' +
                 ", dataDiNascita=" + dataDiNascita +
                 ", sesso=" + sesso +
-                ", listaPartecipazioni=" + listaPartecipazioni +
+                ", listaPartecipazioni=" +
                 '}';
     }
 }

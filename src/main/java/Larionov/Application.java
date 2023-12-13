@@ -1,7 +1,12 @@
 package Larionov;
 
 import Larionov.dao.GestioneEventiDAO;
+import Larionov.dao.LocationDAO;
+import Larionov.dao.PartecipazioneDAO;
+import Larionov.dao.PersonaDAO;
+import Larionov.entities.Gender;
 import Larionov.entities.GestioneEventi;
+import Larionov.entities.Persona;
 import Larionov.entities.TipoEvento;
 import com.github.javafaker.Faker;
 
@@ -18,6 +23,9 @@ public class Application {
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         GestioneEventiDAO ged = new GestioneEventiDAO(em);
+        PersonaDAO pd = new PersonaDAO(em);
+        LocationDAO ld = new LocationDAO(em);
+        PartecipazioneDAO partd = new PartecipazioneDAO(em);
         Faker faker = new Faker();
 
 //        *****************************SUPPLIERS******************************
@@ -49,7 +57,7 @@ public class Application {
 
 //        ********************CREAZIONE EVENTI****************
 
-//        for (int i = 0; i < 70; i++){
+//        for (int i = 0; i < 5; i++){
 //            ged.save(nuovoEventoSupplier.get());
 //        }
 
@@ -63,6 +71,17 @@ public class Application {
         System.out.println("********************EVENTI CANCELLATI********************");
 
         ged.findByIdAndDelete(3);
+
+
+        System.out.println("********************CREAZIONE DEL PARTECIPANTE********************");
+        Persona paolo = new Persona("Paolo","Marchetti","paolo@mail.com", LocalDate.of(1991,4,25), Gender.MALE);
+        Persona marco = new Persona("Marco","Carta","sondicarta@mail.com", LocalDate.of(1985,1,11), Gender.MALE);
+
+//        pd.save(paolo);
+//        pd.save(marco);
+
+
+
 
         em.close();
         emf.close();
