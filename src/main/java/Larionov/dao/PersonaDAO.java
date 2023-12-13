@@ -22,7 +22,7 @@ public class PersonaDAO {
 
         transazione.commit();
 
-        System.out.println("Evento" + persona.getNome() + " è stato salvato con successo");
+        System.out.println(persona.getNome() + " è stata salvata con successo");
     };
     public Persona getById(long id){
         Persona found = em.find(Persona.class, id);

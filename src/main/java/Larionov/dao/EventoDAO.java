@@ -22,21 +22,21 @@ public class EventoDAO {
 
         transazione.commit();
 
-        System.out.println("Evento" + evento.getTitolo() + "è stato salvato con successo");
+        System.out.println("Evento " + evento.getTitolo() + " è stato salvato con successo");
     };
     public Evento getById(long id){
         Evento found = em.find(Evento.class, id);
         return found;
     };
 
-    public void getEventoNameById(long id) {
-        Evento evento = getById(id);
-        if (evento != null){
-            System.out.printf(evento.getTitolo());
-        } else {
-            System.out.printf("Non è Stato trovato nessun evento");
-        }
-    }
+//    public void getEventoNameById(long id) {
+//        Evento evento = getById(id);
+//        if (evento != null){
+//            System.out.printf(evento.getTitolo());
+//        } else {
+//            System.out.printf("Non è Stato trovato nessun evento");
+//        }
+//    }
     public void findByIdAndDelete(long id){
         Evento found = this.getById(id);
 

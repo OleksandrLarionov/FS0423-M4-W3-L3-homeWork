@@ -22,7 +22,7 @@ public class PartecipazioneDAO {
 
         transazione.commit();
 
-        System.out.println("Partecipante"  + " è stato salvato con successo");
+        System.out.println("Partecipante " + partecipante  + " è stato salvato con successo");
     };
     public Partecipazione getById(long id){
         Partecipazione found = em.find(Partecipazione.class, id);
